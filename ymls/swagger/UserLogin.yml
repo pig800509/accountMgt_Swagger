@@ -1,0 +1,47 @@
+Documentation:
+  summary: Login API for user.
+  tags:
+    - UserAction
+  description: >
+    2 parameters and 1 header request are required.
+    Header:Content-Type:"application/json",
+    Parameter:["username","password"]
+  requestHeaders:
+    - in: header
+      name: Content-Type
+      description: request body format
+      schema:
+        type: "string"
+        example: application/json
+  queryParams:
+    - in: query
+      name: username
+      required: true
+      schema:
+        type : string
+        example: user01
+    - in: query
+      name: password
+      required: true
+      schema:
+        type : string
+        example: D1fd5dTIg23
+  methodResponses:
+    -
+      statusCode: '200'
+      responseBody:
+        description: Login success
+      responseModels:
+        application/json: 200JsonResponse
+    -
+      statusCode: "400"
+      responseBody:
+        description: Error
+      responseModels:
+        application/json: 400JsonResponse
+    -
+      statusCode: "502"
+      responseBody:
+        description: Login fail
+      responseModels:
+        application/json: FailedJsonResponse

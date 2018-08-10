@@ -1,0 +1,41 @@
+Documentation:
+  summary: Delete specific account
+  tags:
+    - AccountManagement
+  description: >
+    1 path parameter and 1 header request are required.
+    Header:Content-Type:"application/json",
+    Parameter:["user_id"]
+  requestHeaders:
+    - in: header
+      name: Content-Type
+      description: request body format
+      schema:
+        type: string
+        example: application/json
+  pathParams:
+    - in: path
+      name: user_id
+      required: true
+      schema:
+        type : string
+        example: 07332859e75edb92b1ef009
+  methodResponses:
+    -
+      statusCode: '200'
+      responseBody:
+        description: Delete account success.
+      responseModels:
+        application/json: 200JsonResponse
+    -
+      statusCode: "400"
+      responseBody:
+        description: Error.
+      responseModels:
+        application/json: 400JsonResponse
+    -
+      statusCode: "502"
+      responseBody:
+        description: Delete account Fail.
+      responseModels:
+        application/json: FailedJsonResponse

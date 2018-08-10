@@ -1,0 +1,108 @@
+Documentation:
+  summary: Update specific account
+  tags:
+    - AccountManagement
+  description: >
+    11 parameters and 1 header request are required.
+    Header:Content-Type:"application/json",
+    Parameter:["first_name","last_name","display_name","description","email","phone","password","role_id","active_status","photo_filename","photo"]
+  requestHeaders:
+    - in: header
+      name: Content-Type
+      description: request body format
+      schema:
+        type: "string"
+        example: application/json
+  pathParams:
+    - in: path
+      name: user_id
+      required: true
+      schema:
+        type : string
+        example: 07332859e75edb92b1ef009
+  queryParams:
+    - in: query
+      name: first_name
+      required: true
+      schema:
+        type : string
+        example: user01
+    - in: query
+      name: last_name
+      required: true
+      schema:
+        type : string
+        example: plant01
+    - in: query
+      name: display_name
+      required: true
+      schema:
+        type : string
+        example: user01
+    - in: query
+      name: description
+      required: true
+      schema:
+        type : string
+        example: user01 for test
+    - in: query
+      name: email
+      required: true
+      schema:
+        type : string
+        example: user01@gmail.com
+    - in: query
+      name: phone
+      required: true
+      schema:
+        type : string
+        example: 0800-120-1202
+    - in: query
+      name: password
+      required: true
+      schema:
+        type : string
+        example: RF95TsdfgHDgUh5OIU
+    - in: query
+      name: role_id
+      required: true
+      schema:
+        type : string
+        example: 06222859e75edb92b1ab111
+    - in: query
+      name: active_status
+      required: true
+      schema:
+        type : string
+        example: 1
+    - in: query
+      name: photo_filename
+      required: true
+      schema:
+        type : string
+        example: user01.jpg
+    - in: query
+      name: photo
+      required: true
+      schema:
+        type : string
+        example: 56sdfg7fdgsg89fdsg54sdgf45fd5fdg4
+  methodResponses:
+    -
+      statusCode: '200'
+      responseBody:
+        description: Update account success.
+      responseModels:
+        application/json: 200JsonResponse
+    -
+      statusCode: "400"
+      responseBody:
+        description: Error.
+      responseModels:
+        application/json: 400JsonResponse
+    -
+      statusCode: "502"
+      responseBody:
+        description: Update account fail.
+      responseModels:
+        application/json: FailedJsonResponse

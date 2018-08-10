@@ -1,0 +1,33 @@
+Documentation:
+  summary: List all role
+  tags:
+    - Role
+  description: >
+    1 header request is required.
+    Header:Content-Type:"application/json"
+  requestHeaders:
+    - in: header
+      name: Content-Type
+      description: request format
+      schema:
+        type: "string"
+        example: application/json
+  methodResponses:
+    -
+      statusCode: '200'
+      responseBody:
+        description: Get items success.
+      responseModels:
+        application/json: ItemsMessageResponse
+    -
+      statusCode: "400"
+      responseBody:
+        description: Error
+      responseModels:
+        application/json: 400JsonResponse
+    -
+      statusCode: "502"
+      responseBody:
+        description: Get items fail.
+      responseModels:
+        application/json: FailedJsonResponse

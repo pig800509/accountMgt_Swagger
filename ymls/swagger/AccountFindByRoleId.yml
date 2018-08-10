@@ -1,0 +1,41 @@
+Documentation:
+  summary: Find account info by role's id.
+  tags:
+    - AccountManagement
+  description: >
+    1 path parameter and 1 header request are required.
+    Header:Content-Type:"application/json",
+    Parameter:["role_id"]
+  requestHeaders:
+    - in: header
+      name: Content-Type
+      description: request body format
+      schema:
+        type: "string"
+        example: application/json
+  pathParams:
+    - in: path
+      name: role_id
+      required: true
+      schema:
+        type : string
+        example: 06222859e75edb92b1ab111
+  methodResponses:
+    -
+      statusCode: '200'
+      responseBody:
+        description: Get items success.
+      responseModels:
+        application/json: ItemsMessageResponse
+    -
+      statusCode: "400"
+      responseBody:
+        description: Error.
+      responseModels:
+        application/json: 400JsonResponse
+    -
+      statusCode: "502"
+      responseBody:
+        description: Get items fail.
+      responseModels:
+        application/json: FailedJsonResponse

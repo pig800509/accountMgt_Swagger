@@ -1,0 +1,11 @@
+Documentation:
+  summary: Other path repose.
+  tags:
+    - Any
+  description: >
+    For API that not exist. 
+  methodResponses:
+    -
+      statusCode: "404"
+      responseModels:
+        "application/json": 400JsonResponse

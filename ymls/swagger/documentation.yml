@@ -1,0 +1,185 @@
+Documentation:
+    # this is general info about the API
+  
+  version: '1.0'
+  title: OpenAPI for WiFactoryIoT_AccountMgt
+  description: OpenAPI documatation
+  termsOfService: https://www.google.com
+  contact:
+    name: Ted_Chu
+    email: Ted_Chu@wistron.com
+  license:
+    name: The license is reserved by Wistron Crop.
+    url: https://www.github.com
+  tags:
+    -
+      name: AccountManagement
+      description: Management account including query,create,update,delete.
+    -
+      name: Role
+      description: View all roles or get specific one.
+    -
+      name: UserAction
+      description: User login or logout.
+        
+  models:
+    - name: RoleMessageResponse
+      contentType: "application/json"
+      schema:
+        type: object
+        properties:
+          role_id:
+            type: string
+          role_name: 
+            type: string 
+          display_name:
+            type: string
+          description:
+            type: string
+          active_status:
+            type: integer
+          used:
+            type: integer
+          num_of_users:
+            type: integer
+          permission_settings:
+            type: object
+      example: 
+        role_id: 06222859e75edb92b1ab111
+        role_name: IT
+        display_name: IT
+        description: IT for Site A
+        active_status: 1
+        used: 0
+        num_of_users: 0
+        permission_settings: "{...}"
+    - name: AccountMessageResponse
+      contentType: "application/json"
+      schema:
+        type: object
+        properties:
+          user_id:
+            type: string
+          user_name: 
+            type: string 
+          first_name:
+            type: string
+          last_name:
+            type: string
+          description:
+            type: string
+          email:
+            type: string
+          phone:
+            type: string
+          role_id:
+            type: string
+          role_name:
+            type: string
+          active_status:
+            type: integer
+          onlin:
+            type: integer
+          last_login:
+            type: string
+          retry_for_login:
+            type: integer
+          photo_filename:
+            type: string
+          photo_url:
+            type: string
+          photo_preview_url:
+            type: string
+      example: 
+        user_id: 07332859e75edb92b1ef009
+        username: user01
+        first_name: user01
+        last_name: plant01
+        display_name: user01
+        description: user01 for test
+        email: user01@gmail.com
+        phone: 0800-120-1202
+        role_id: 06222859e75edb92b1ab111
+        role_name: IT
+        active_status: 1
+        onlin": 0
+        last_login: "2018-07-17 12:00:00"
+        retry_for_login: 0
+        photo_filename: user01.jpg
+        photo_url: "10.135.2.3/account/photo/user01.jpg"
+        photo_preview_url: "10.135.2.3/account/photo/user01_preview.jpg"
+    - name: ItemsMessageResponse
+      contentType: "application/json"
+      schema:
+        type: object
+        properties:
+          xxx_list:
+            type: array
+            items:
+              type: object
+      
+    - name: 200JsonResponse
+      contentType: "application/json"
+      schema:
+        type: object
+        properties:
+          results:
+            type: object
+            properties:
+              status:
+                type: string
+              status_code:
+                type: number
+              status_msg:
+                type: string
+              xxx_body:
+                type: string
+              time:
+                type: string
+      example: 
+        results:
+          status: OK
+          status_code: 200
+          status_msg: "xxx... success."
+          xxx_body: "..."
+          xxxTime: "2018-07-19 12:00:00"
+    - name: 400JsonResponse
+      contentType: "application/json"
+      schema:
+        type: object
+        properties:
+          results:
+            type: object
+            properties:
+              status:
+                type: string
+              status_code:
+                type: integer
+              status_msg:
+                type: string
+      example: 
+        status: Fail
+        status_code: 400
+        status_msg: "xxx... fail."
+        xxx_body: "..."
+        xxxTime: "2018-07-19 12:00:00"
+    - name: FailedJsonResponse
+      contentType: "application/json"
+      schema:
+        type: object
+        properties:
+          results:
+            type: object
+            properties:
+              status:
+                type: string
+              status_code:
+                type: integer
+              status_msg:
+                type: string
+      example: 
+        status: Fail
+        status_code: 500
+        status_msg: "xxx... fail."
+        xxx_body: "..."
+        xxxTime: "2018-07-19 12:00:00"

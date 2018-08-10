@@ -1,0 +1,1264 @@
+{
+  "openapi": "3.0.0",
+  "components": {
+    "schemas": {
+      "RoleMessageResponse": {
+        "type": "object",
+        "properties": {
+          "role_id": {
+            "type": "string"
+          },
+          "role_name": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "active_status": {
+            "type": "integer"
+          },
+          "used": {
+            "type": "integer"
+          },
+          "num_of_users": {
+            "type": "integer"
+          },
+          "permission_settings": {
+            "type": "object"
+          }
+        }
+      },
+      "AccountMessageResponse": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "user_name": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "role_id": {
+            "type": "string"
+          },
+          "role_name": {
+            "type": "string"
+          },
+          "active_status": {
+            "type": "integer"
+          },
+          "onlin": {
+            "type": "integer"
+          },
+          "last_login": {
+            "type": "string"
+          },
+          "retry_for_login": {
+            "type": "integer"
+          },
+          "photo_filename": {
+            "type": "string"
+          },
+          "photo_url": {
+            "type": "string"
+          },
+          "photo_preview_url": {
+            "type": "string"
+          }
+        }
+      },
+      "ItemsMessageResponse": {
+        "type": "object",
+        "properties": {
+          "xxx_list": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "200JsonResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string"
+              },
+              "status_code": {
+                "type": "number"
+              },
+              "status_msg": {
+                "type": "string"
+              },
+              "xxx_body": {
+                "type": "string"
+              },
+              "time": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "400JsonResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string"
+              },
+              "status_code": {
+                "type": "integer"
+              },
+              "status_msg": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "FailedJsonResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string"
+              },
+              "status_code": {
+                "type": "integer"
+              },
+              "status_msg": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {}
+  },
+  "info": {
+    "title": "OpenAPI for WiFactoryIoT_AccountMgt",
+    "description": "OpenAPI documatation",
+    "version": "1.0",
+    "termsOfService": "https://www.google.com",
+    "contact": {
+      "name": "Ted_Chu",
+      "email": "Ted_Chu@wistron.com"
+    },
+    "license": {
+      "name": "The license is reserved by Wistron Crop.",
+      "url": "https://www.github.com"
+    }
+  },
+  "paths": {
+    "/accounts/login": {
+      "post": {
+        "operationId": "UserLogin",
+        "summary": "Login API for user.",
+        "description": "2 parameters and 1 header request are required. Header:Content-Type:\"application/json\", Parameter:[\"username\",\"password\"]\n",
+        "tags": [
+          "UserAction"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "D1fd5dTIg23"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request body format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200JsonResponse"
+                },
+                "example": {
+                  "results": {
+                    "status": "OK",
+                    "status_code": 200,
+                    "status_msg": "xxx... success.",
+                    "xxx_body": "...",
+                    "xxxTime": "2018-07-19 12:00:00"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Login fail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/logout": {
+      "post": {
+        "operationId": "UserLogout",
+        "summary": "Logout API for user.",
+        "description": "1 parameter and 1 header request are required. Header:Content-Type:\"application/json\", Parameter:[\"user_id\"]\n",
+        "tags": [
+          "UserAction"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "07332859e75edb92b1ef009"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request body format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logout success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200JsonResponse"
+                },
+                "example": {
+                  "results": {
+                    "status": "OK",
+                    "status_code": 200,
+                    "status_msg": "xxx... success.",
+                    "xxx_body": "...",
+                    "xxxTime": "2018-07-19 12:00:00"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Logout fail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/roles": {
+      "get": {
+        "operationId": "ListRoles",
+        "summary": "List all role",
+        "description": "1 header request is required. Header:Content-Type:\"application/json\"\n",
+        "tags": [
+          "Role"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get items success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemsMessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Get items fail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/roles/{role_id}": {
+      "get": {
+        "operationId": "FindRole",
+        "summary": "Get specific role by id",
+        "description": "1 path parameter and 1 header request are required. Header:Content-Type:\"application/json\"\n",
+        "tags": [
+          "Role"
+        ],
+        "parameters": [
+          {
+            "name": "role_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "06222859e75edb92b1ab111"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get item success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleMessageResponse"
+                },
+                "example": {
+                  "role_id": "06222859e75edb92b1ab111",
+                  "role_name": "IT",
+                  "display_name": "IT",
+                  "description": "IT for Site A",
+                  "active_status": 1,
+                  "used": 0,
+                  "num_of_users": 0,
+                  "permission_settings": "{...}"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Logout fail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts": {
+      "get": {
+        "operationId": "ListAccount",
+        "summary": "List account.",
+        "description": "1 header request is required. Header:Content-Type:\"application/json\"\n",
+        "tags": [
+          "AccountManagement"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request body format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get items success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemsMessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Get items fail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "CreateAccount",
+        "summary": "Create an account",
+        "description": "12 parameters and 1 header request are required. Header:Content-Type:\"application/json\", Parameter:[\"username\",\"first_name\",\"last_name\",\"display_name\",\"description\",\"email\",\"phone\",\"password\",\"role_id\",\"active_status\",\"photo_filename\",\"photo\"]\n",
+        "tags": [
+          "AccountManagement"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01"
+            }
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01"
+            }
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "plant01"
+            }
+          },
+          {
+            "name": "display_name",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01 for test"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01@gmail.com"
+            }
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "0800-120-1202"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "RF95TsdfgHDgUh5OIU"
+            }
+          },
+          {
+            "name": "role_id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "06222859e75edb92b1ab111"
+            }
+          },
+          {
+            "name": "active_status",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": 1
+            }
+          },
+          {
+            "name": "photo_filename",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01.jpg"
+            }
+          },
+          {
+            "name": "photo",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "56sdfg7fdgsg89fdsg54sdgf45fd5fdg4"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request body format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create account success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200JsonResponse"
+                },
+                "example": {
+                  "results": {
+                    "status": "OK",
+                    "status_code": 200,
+                    "status_msg": "xxx... success.",
+                    "xxx_body": "...",
+                    "xxxTime": "2018-07-19 12:00:00"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Create account Fail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/byRole/{role_id}": {
+      "get": {
+        "operationId": "FindAccountByRoleId",
+        "summary": "Find account info by role's id.",
+        "description": "1 path parameter and 1 header request are required. Header:Content-Type:\"application/json\", Parameter:[\"role_id\"]\n",
+        "tags": [
+          "AccountManagement"
+        ],
+        "parameters": [
+          {
+            "name": "role_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "06222859e75edb92b1ab111"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request body format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get items success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemsMessageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Get items fail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{user_id}": {
+      "get": {
+        "operationId": "FindAccountById",
+        "summary": "Find specific account.",
+        "description": "1 path parameter and 1 header request are required. Header:Content-Type:\"application/json\", Parameter:[\"user_id\"]\n",
+        "tags": [
+          "AccountManagement"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "07332859e75edb92b1ef009"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request body format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get item success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountMessageResponse"
+                },
+                "example": {
+                  "user_id": "07332859e75edb92b1ef009",
+                  "username": "user01",
+                  "first_name": "user01",
+                  "last_name": "plant01",
+                  "display_name": "user01",
+                  "description": "user01 for test",
+                  "email": "user01@gmail.com",
+                  "phone": "0800-120-1202",
+                  "role_id": "06222859e75edb92b1ab111",
+                  "role_name": "IT",
+                  "active_status": 1,
+                  "onlin\"": 0,
+                  "last_login": "2018-07-17 12:00:00",
+                  "retry_for_login": 0,
+                  "photo_filename": "user01.jpg",
+                  "photo_url": "10.135.2.3/account/photo/user01.jpg",
+                  "photo_preview_url": "10.135.2.3/account/photo/user01_preview.jpg"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Get item fail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "UpdateAccount",
+        "summary": "Update specific account",
+        "description": "11 parameters and 1 header request are required. Header:Content-Type:\"application/json\", Parameter:[\"first_name\",\"last_name\",\"display_name\",\"description\",\"email\",\"phone\",\"password\",\"role_id\",\"active_status\",\"photo_filename\",\"photo\"]\n",
+        "tags": [
+          "AccountManagement"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "07332859e75edb92b1ef009"
+            }
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01"
+            }
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "plant01"
+            }
+          },
+          {
+            "name": "display_name",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01 for test"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01@gmail.com"
+            }
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "0800-120-1202"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "RF95TsdfgHDgUh5OIU"
+            }
+          },
+          {
+            "name": "role_id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "06222859e75edb92b1ab111"
+            }
+          },
+          {
+            "name": "active_status",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": 1
+            }
+          },
+          {
+            "name": "photo_filename",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "user01.jpg"
+            }
+          },
+          {
+            "name": "photo",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string",
+              "example": "56sdfg7fdgsg89fdsg54sdgf45fd5fdg4"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request body format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update account success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200JsonResponse"
+                },
+                "example": {
+                  "results": {
+                    "status": "OK",
+                    "status_code": 200,
+                    "status_msg": "xxx... success.",
+                    "xxx_body": "...",
+                    "xxxTime": "2018-07-19 12:00:00"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Update account fail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteAccount",
+        "summary": "Delete specific account",
+        "description": "1 path parameter and 1 header request are required. Header:Content-Type:\"application/json\", Parameter:[\"user_id\"]\n",
+        "tags": [
+          "AccountManagement"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "07332859e75edb92b1ef009"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "request body format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete account success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200JsonResponse"
+                },
+                "example": {
+                  "results": {
+                    "status": "OK",
+                    "status_code": 200,
+                    "status_msg": "xxx... success.",
+                    "xxx_body": "...",
+                    "xxxTime": "2018-07-19 12:00:00"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400JsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 400,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Delete account Fail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FailedJsonResponse"
+                },
+                "example": {
+                  "status": "Fail",
+                  "status_code": 500,
+                  "status_msg": "xxx... fail.",
+                  "xxx_body": "...",
+                  "xxxTime": "2018-07-19 12:00:00"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
